@@ -14,6 +14,21 @@
 
 'use strict';
 
+const promo = document.querySelectorAll(".promo__adv img"),
+    poster = document.querySelector(".promo__bg"),
+    genre = poster.querySelector(".promo__genre"),
+    movieList = document.querySelector(".promo__interactive-list");
+
+genre.textContent = "Драма";
+
+promo.forEach(item => {
+    item.remove();
+});
+
+poster.style.backgroundImage = "url('img/bg.jpg')";
+
+movieList.innerHTML = "";
+
 const movieDB = {
     movies: [
         "Логан",
@@ -23,4 +38,12 @@ const movieDB = {
         "Скотт Пилигрим против..."
     ]
 };
+movieDB.movies.sort();
+movieDB.movies.forEach((film, i) => {
+    movieList.innerHTML += `
+    <li class="promo__interactive-item">${i+1}. ${film}
+        <div class="delete"></div>
+    </li>
+    `
+});
 
